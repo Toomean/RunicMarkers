@@ -1,0 +1,11 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.0.1",
+	"FriendlyName": "Runic Markers",
+	"Description": "Content for the Runic Markers mod. This is an unofficial modification. It is not made, endorsed or supported by THQ Nordic.",
+	"Category": "Mod",
+	"CreatedBy": "Reaper",
+	"CanContainContent": true,
+	"ExplicitlyLoaded": false
+}

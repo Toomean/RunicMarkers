@@ -1,0 +1,11 @@
+.DS_Store
+*.Cache
+art/ref/
+# Screenshots from in-game tests (not versioned)
+art/*.png
+# Rune drafts that were not used (Elder Futhark experiments)
+art/scratched/
+art/rune-drafts/
+art/gen_scratched_runes.py
+# Release archives built by tools/package.sh
+dist/

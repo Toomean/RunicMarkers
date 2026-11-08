@@ -1,0 +1,12 @@
+{
+	"name": "Reaper-RunicMarkers",
+	"title": "Runic Markers",
+	"author": "Reaper",
+	"projectWebsiteURL": "",
+	"description": "Scratch glowing rune marks onto walls and floors where you look. Hold T to aim, release to place, Y switches the symbol, hold U to delete. Runes are saved with your savegame; the Stats page lists them. This is an unofficial modification. It is not made, endorsed or supported by THQ Nordic.",
+	"modVersion": "0.1.0",
+	"scriptPreprocessorDefines": [],
+	"tags": [],
+	"loadOrder": "Normal",
+	"dependencies": []
+}

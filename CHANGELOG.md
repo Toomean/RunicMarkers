@@ -13,4 +13,4 @@ First public version.
 - Settings: max placing distance, rune glow (0–100).
 
 Known limitations: opening the inventory while holding T/U places or deletes a rune; runes can break at plank/log
-seams; tested only under CrossOver on macOS so far.
+seams; runes can be hard to see on muddy ground; tested only under CrossOver on macOS so far.

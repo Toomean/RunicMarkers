@@ -62,12 +62,13 @@ different modlist", choose **Continue anyway** and the runes simply do not appea
 
 - Opening the inventory while holding T or U places or deletes a rune.
 - A rune placed across a seam between two planks or logs can look cut.
+- On muddy or wet ground a rune can be hard to see.
 - Runes placed after your last save are gone when you load, like any other progress.
 - Tested on the current game version under CrossOver (macOS). Windows reports are very welcome.
 
 ### Source and license
 
-Source code: <GitHub link>. The mod's code and symbol art are MIT-licensed. Gothic 1 Remake and its content belong
+Source code: https://github.com/Toomean/RunicMarkers. The mod's code and symbol art are MIT-licensed. Gothic 1 Remake and its content belong
 to THQ Nordic; the mod uses only the official modkit and requires a legal copy of the game.
 
 Feedback, bugs and screenshots of your runes are welcome in the comments.

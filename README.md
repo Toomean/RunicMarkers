@@ -98,6 +98,7 @@ When reporting a problem, please include:
 - Opening the inventory while holding T or U places or deletes a rune: the game sends a key release, and scripts
   cannot tell that the inventory is open.
 - On overlapping planks and round logs the symbol can break at the seams (decal projection).
+- On muddy or wet ground the symbol can be hard to see.
 - Tested only under CrossOver on macOS so far, not on Windows.
 - Runes are not shown on the world map: the modkit has no map API yet.
 

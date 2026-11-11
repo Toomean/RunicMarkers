@@ -3,8 +3,6 @@
 **Keys changed in 0.2: place V, next symbol N, delete H (was T / Y / U). You can rebind them, or bring back
 T / Y / U, in Settings → Game → Runic Markers.**
 
-This is an unofficial modification. It is not made, endorsed or supported by THQ Nordic.
-
 Scratch rune marks onto walls and floors wherever you look: "I was here", a stash, danger, a shrine.
 The symbols are hand-drawn and look carved into the surface.
 
@@ -119,6 +117,8 @@ When reporting a problem, please include:
 
 ## License
 
+This is an unofficial modification. It is not made, endorsed or supported by THQ Nordic.
+
 The mod's own code, scripts and rune artwork are released under the [MIT License](LICENSE).
 
 This license covers only what this repository adds. Gothic 1 Remake, its modkit and all game content belong to
@@ -126,5 +126,3 @@ THQ Nordic GmbH and its licensors and are governed by the game's EULA and the
 [THQ Nordic Modding Policy](https://github.com/AlkimiaInteractive/G1R-Modkit/blob/main/LICENSE.txt). The mod needs an
 installed, legitimately owned copy of the game, is free of charge, and grants THQ Nordic the licence described in
 section 4.3 of that policy.
-
-This is an unofficial modification. It is not made, endorsed or supported by THQ Nordic.

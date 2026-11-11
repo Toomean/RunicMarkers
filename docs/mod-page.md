@@ -23,8 +23,6 @@ Scratch glowing runes onto walls and floors to mark where you have been, what yo
 **Keys changed in 0.2: place V, next symbol N, delete H (was T / Y / U). You can rebind them, or bring back
 T / Y / U, in Settings → Game → Runic Markers.**
 
-This is an unofficial modification. It is not made, endorsed or supported by THQ Nordic.
-
 The Colony is a maze of caves, mines and huts that all look alike. Runic Markers lets you leave your own marks
 in the world: scratch a rune onto a wall or the ground wherever you look, and it stays there, softly glowing.
 
@@ -84,7 +82,7 @@ different modlist", choose **Continue anyway** and the runes simply do not appea
 
 ### License
 
-The mod's code and symbol art are MIT-licensed. Gothic 1 Remake and its content belong
+This is an unofficial modification. It is not made, endorsed or supported by THQ Nordic. The mod's code and symbol art are MIT-licensed. Gothic 1 Remake and its content belong
 to THQ Nordic; the mod uses only the official modkit and requires a legal copy of the game.
 
 Feedback, bugs and screenshots of your runes are welcome in the comments.

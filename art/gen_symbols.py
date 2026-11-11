@@ -1,5 +1,7 @@
 """Hand-scratched marker symbol set (own drawings). Each stroke is a polyline drawn as ONE continuous
-carved stroke (tapered ends, wobble, uneven width). Stdlib only. Usage: gen_symbols.py OUTDIR [seed]"""
+carved stroke (tapered ends, wobble, uneven width). Plus helper marks (MARKS, e.g. the delete aim dot), written
+in the "outlined" style only. Stdlib only. Usage: gen_symbols.py OUTDIR [seed]
+PNGs: rsvg-convert outlined_<name>.svg -o outlined_<name>.png (512 px, reproduces the committed PNGs)."""
 import math, random, sys, os
 
 def arc(cx, cy, r, a0, a1, n=40, ry=None):
@@ -22,6 +24,12 @@ SYMBOLS = {  # unit square, y down
                 (.5+.40*math.cos(math.radians(a)), .42+.31*math.sin(math.radians(a)))] for a in (40,65,90,115,140)],
  "human":     [arc(.5,.2,.09,0,350,24), [(.5,.3),(.5,.6)], [(.28,.42),(.72,.42)],
                [(.5,.6),(.33,.86)], [(.5,.6),(.67,.86)]],
+}
+
+# Helper marks, NOT placeable symbols (no mask/glow, not on the sheet, not in the game's symbol list):
+# "dot" = small filled disc for the delete aim (cx, cy, r in the unit square).
+MARKS = {
+ "dot": (.5, .5, .3),
 }
 
 S, MARGIN = 512, 50
@@ -61,8 +69,20 @@ def carved(poly, rng, base_w):
         left.append((cx+nx*w/2, cy+ny*w/2)); right.append((cx-nx*w/2, cy-ny*w/2))
     return "M" + " L".join(f"{a:.1f} {b:.1f}" for a, b in left + right[::-1]) + " Z"
 
+def blob(cx, cy, r, rng, n=48):
+    """Filled disc with an uneven, hand-cut rim (same wobble idea as carved())."""
+    ph = [rng.uniform(0, 6.28) for _ in range(2)]
+    pts = []
+    for i in range(n):
+        a = 2*math.pi*i/n
+        k = 1 + .06*math.sin(3*a+ph[0]) + .03*math.sin(7*a+ph[1]) + rng.uniform(-.015, .015)
+        pts.append(px((cx + r*k*math.cos(a), cy + r*k*math.sin(a))))
+    return "M" + " L".join(f"{x:.1f} {y:.1f}" for x, y in pts) + " Z"
+
 def paths(name, seed):
     rng = random.Random(f"{name}-{seed}"); out = []
+    if name in MARKS:
+        return [(blob(*MARKS[name], rng), 1.0)]
     for poly in SYMBOLS[name]:
         out.append((carved(poly, rng, 24), 1.0))
         if rng.random() < 0.5:  # second, thinner pass of the blade
@@ -88,6 +108,8 @@ if __name__ == "__main__":
     for name in SYMBOLS:
         for mode in ("mask", "glow", "outlined"):
             open(os.path.join(outdir, f"{mode}_{name}.svg"), "w").write(svg(name, seed, mode))
+    for name in MARKS:  # only the decal source style
+        open(os.path.join(outdir, f"outlined_{name}.svg"), "w").write(svg(name, seed, "outlined"))
     cell, names = 230, list(SYMBOLS)
     sheet = [f'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{len(names)*cell}" height="{cell+40}">',
              '<rect width="100%" height="100%" fill="#1d1c1a"/>']

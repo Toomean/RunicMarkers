@@ -56,7 +56,7 @@ class ARunicMarker : AActor
 		m_Light.SetVisibility(Candela > 0.0f);
 	}
 
-	/** Red light while targeted by hold-U (visible even when the glow setting is 0). */
+	/** Red light while targeted by the delete key (visible even when the glow setting is 0). */
 	void SetHighlighted(bool bOn)
 	{
 		bHighlighted = bOn;

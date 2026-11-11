@@ -1,5 +1,8 @@
 # Runic Markers (Gothic 1 Remake mod)
 
+**Keys changed in 0.2: place V, next symbol N, delete H (was T / Y / U). You can rebind them, or bring back
+T / Y / U, in Settings → Game → Runic Markers.**
+
 This is an unofficial modification. It is not made, endorsed or supported by THQ Nordic.
 
 Scratch rune marks onto walls and floors wherever you look: "I was here", a stash, danger, a shrine.
@@ -7,20 +10,27 @@ The symbols are hand-drawn and look carved into the surface.
 
 ## Controls
 
-| Key | Action |
+| Key (default) | Action |
 |---|---|
-| **T** (hold) | Preview the rune where you are looking (works as a crosshair) |
-| **T** (release) | Place the rune. A quick tap places it right away |
-| **Y** | Next symbol (shown for ~1 s where you are looking) |
-| **U** (hold) | The rune that would be deleted glows red |
-| **U** (release) | Delete that rune (the one nearest to the aimed point, within ~40 cm) |
+| **V** (hold) | Preview the rune where you are looking (works as a crosshair) |
+| **Mouse wheel** (while holding V) | Change the symbol |
+| **V** (release) | Place the rune. A quick tap places it right away |
+| **N** | Next symbol |
+| **H** (hold) | The rune nearest to the crosshair (within a few degrees), otherwise the one nearest to the aimed point (within ~40 cm), glows red; a small dot marks the aim point |
+| **H** (release) | Delete that rune |
+
+While you hold V and for ~1.5 s after a symbol change, an indicator at the bottom of the screen shows the current
+symbol and its rune image (hidden while the game is paused).
+
+All three keys can be changed in Settings → Game → Runic Markers (see [Settings](#settings)).
 
 Symbols in order: X (visited), O (mark), Sun of Innos, Moon of Beliar, Waves of Adanos, Eye of the Sleeper, Human.
 
 Placing rules:
 - only on **static** world geometry (walls, floors, rocks), not on characters, doors or chests;
 - no farther than **Max distance** (300 cm by default) and not through walls;
-- the keys do nothing in menus, the inventory, dialogue or on pause;
+- the keys do nothing in menus, the inventory, dialogue or on pause; opening the inventory or pausing while holding
+  V or H cancels the place / delete;
 - at most 100 runes; when full, the oldest one disappears.
 
 Runes are **saved with your savegame**: they come back after loading and after restarting the game, and every save
@@ -33,9 +43,12 @@ Click a rune to delete it. **Delete all runes** asks for a second click.
 
 ## Settings
 
-Pause → Options → **Runic Markers**:
+Settings → Game → **Runic Markers** (the "[Mod] Runic Markers" section):
 - **Max marker distance (cm)**: 100–1000, default 300;
-- **Rune glow (0-100)**: light around the runes, 0 turns it off. Placed runes update within about a second.
+- **Rune glow (0-100)**: light around the runes, 0 turns it off. Placed runes update within about a second;
+- **Place key / Next symbol key / Delete key** (default V / N / H): click a key box and press the new key. It works
+  at once and is saved. Refused: a key already used by another Runic Markers key, Escape, the left / right mouse
+  button. Esc cancels the selection.
 
 ## Installation
 
@@ -95,8 +108,10 @@ When reporting a problem, please include:
 
 ## Known limitations
 
-- Opening the inventory while holding T or U places or deletes a rune: the game sends a key release, and scripts
-  cannot tell that the inventory is open.
+- Keys are not checked against the game's own key bindings or other mods' keys: if you pick a key that is already
+  in use, both react.
+- If you keep holding V or H while closing the Esc menu, the hold ends there (the game releases held keys); press
+  the key again.
 - On overlapping planks and round logs the symbol can break at the seams (decal projection).
 - On muddy or wet ground the symbol can be hard to see.
 - Tested only under CrossOver on macOS so far, not on Windows.

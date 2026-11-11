@@ -1,5 +1,6 @@
 #!/bin/zsh
-# Rebuilds the rune pak (7 symbols as virtual textures) on macOS via CrossOver + Windows UE 5.4.4.
+# Rebuilds the rune pak (7 symbols as virtual textures for the decals + the same 7 as plain UI icons for the
+# HUD indicator, + the delete aim dot as a VT only) on macOS via CrossOver + Windows UE 5.4.4.
 # Usage: zsh cook/build.sh            (from the repo root)
 # Needs: CrossOver bottle "Epic Games Store" with UE 5.4 at C:\Program Files\Epic Games\UE_5.4.
 # The wine "create_view" assertion crash is random (~50-80% of runs), so every step is retried.
@@ -15,12 +16,20 @@ echo "logs: $log_dir"
 mkdir -p "$project_dir/Source_PNG" "$project_dir/Plugins/Reaper-RunicMarkers/Content/Textures"
 cp -R "$repo_root/cook/RunicDecal/." "$project_dir/"
 # Source art: white stroke with a dark carved edge (art/gen_symbols.py, mode "outlined"); the dark edge
-# keeps runes readable on light stone. Copied under one neutral name so the import script does not care.
+# keeps runes readable on light stone. Copied under one neutral name so the import script does not care:
+# rune_<sym>.png (full 512 px, VT decal source) and icon_<sym>.png (downscaled to 128 px for the HUD icon,
+# which is drawn at 64 px without mips; the full-size source would alias).
 for sym in x_visited o_other innos beliar adanos sleeper human; do
-  cp "$repo_root/art/symbols/outlined_$sym.png" "$project_dir/Source_PNG/rune_$sym.png"
+  cp "$repo_root/art/symbols/outlined_$sym.png" "$project_dir/Source_PNG/rune_$sym.png" || exit 1
+  sips -z 128 128 "$repo_root/art/symbols/outlined_$sym.png" --out "$project_dir/Source_PNG/icon_$sym.png" \
+    >/dev/null 2>&1 || { echo "sips failed for $sym" >&2; exit 1; }
 done
+# Delete aim dot (art/gen_symbols.py MARKS, not a placeable symbol): VT decal source only, no icon.
+cp "$repo_root/art/symbols/outlined_dot.png" "$project_dir/Source_PNG/rune_dot.png" || exit 1
 
-# 2. Import PNGs as VT textures (headless python).
+# 2. Import per symbol (headless python): rune_<sym>.png -> T_Rune_<sym>_VT (virtual texture, decals) and
+#    icon_<sym>.png -> T_RuneIcon_<sym> (128 px non-VT UI texture, HUD indicator image). RUNIC_OK lists both
+#    with their vt flag (and the icons' compression / mip settings). rune_dot.png -> T_Rune_dot_VT only.
 zsh "$repo_root/cook/ue_retry.sh" "$log_dir/import" 15 "RUNIC_OK" 'C:\RunicCook\RunicDecal\RunicDecal.uproject' \
   -run=pythonscript '-script=C:/RunicCook/RunicDecal/create_vt_symbols.py' -nullrhi || exit 1
 
